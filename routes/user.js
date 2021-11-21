@@ -27,18 +27,34 @@ function getAllUsers(req, res){
 }
 
 function getUserById(req, res){
- 
-  User.findById(req.body.id)
-    .then((result) => {
-    res.send(result)
-    console.log(result)
-    })
-      .catch((error) => console.log(error))
 
+  User.findOne(req.body.id).then((result) =>{
+
+    if(req.body.name == result.name && req.body.password == result.password){
+      res.status(200).send()
+    }else{
+      res.status(401).send()
+    }
+   
+  })
+  .catch((error) => console.log(error))
+
+}
+
+function deleteUser(req, res) {
+
+  User.findOneAndRemove(req.body.id)
+  .then(() =>{
+    res.status(200).send("Your Account is no longer exist")
+  })
+  .catch((error)=>{
+    console.log(error)
+  })
 }
 
 module.exports = {
     newUser,
     getAllUsers,
-    getUserById
+    getUserById,
+    deleteUser
 }

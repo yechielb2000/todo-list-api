@@ -8,20 +8,24 @@ const user = require('./user')
 const task = require('./task')
 
 
-mongoose.connect(packageJson.env.mongoLink).then(()=> console.log('connected to database')).catch((error)=> {console.log(error)})
+mongoose.connect(packageJson.env.mongoLink)
+.then(()=> console.log('connected to database'))
+.catch((error)=> {console.log(error)})
 
 
 router.get('/', function(req, res) {
   res.render('index', { title: 'Todo list server' })
 })
 
-router.get('/users', function(req, res) {
-  if (req.body.id) {
-    user.getUserById
-  }else{
-    user.getAllUsers
-  }
-})
+router.get('/users', user.getAllUsers)
+
+router.get('/tasks', task.getAllTasks)
+
+router.get('/users/user', user.getUserById)
+
+router.delete('/users/delete', user.deleteUser)
+
+router.delete('/tasks/delete', task.deleteTask)
 
 router.post('/users/new', user.newUser)
 

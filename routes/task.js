@@ -16,6 +16,30 @@ function newTask(req, res){
         .catch((error) => console.log(error))
 }
 
+function getAllTasks(req, res){
+
+    Task.find()
+    .then((result) => {
+        res.status(200).send(result)
+        console.log(result)
+    })
+    .catch((error) => console.log(error))
+}
+
+function deleteTask(req, res){
+
+    Task.findOneAndRemove(req.body.id)
+    .then((result) => {
+        res.status(200)
+        console.log(result)
+    })
+    .catch((error)=>{
+        console.log(error)
+      })
+}
+
 module.exports = {
-    newTask
+    newTask,
+    getAllTasks,
+    deleteTask
 }
