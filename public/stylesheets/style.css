@@ -1,7 +1,7 @@
 body {
   padding: 50px;
   font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
-  background-color: darkblue;
+  background-color: darkred;
   color: white;
 }
 
@@ -15,5 +15,15 @@ a {
 
 p {
   color:beige;
+}
+
+ul{
+  list-style-type: none;
+}
+
+.card{
+  margin-top: 10px;
+  padding: 10px;
+  border: 2 solid beige;
 }
 

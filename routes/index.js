@@ -7,14 +7,13 @@ const mongoose = require('mongoose')
 const user = require('./user')
 const task = require('./task')
 
-
 mongoose.connect(packageJson.env.mongoLink)
 .then(()=> console.log('connected to database'))
 .catch((error)=> {console.log(error)})
 
 
 router.get('/', function(req, res) {
-  res.render('index', { title: 'Todo list server' })
+  res.render('index', {title: 'Home'})
 })
 
 router.get('/users', user.getAllUsers)
@@ -27,7 +26,7 @@ router.delete('/users/delete', user.deleteUser)
 
 router.delete('/tasks/delete', task.deleteTask)
 
-router.post('/users/new', user.newUser)
+router.get('/users/new', user.newUser)
 
 router.post('/tasks/new', task.newTask)
 

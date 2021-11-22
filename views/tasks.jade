@@ -1,5 +1,16 @@
 extends layout
 
 block content
-  p Tasks page
-  h1 nothing to see here...
+  h1 Tasks List
+  
+  each task in tasks
+    ul.card
+      li title : 
+        span= task.title
+      li text : 
+        span= task.text
+      li created at : 
+        span= task.createAt
+      li dead line date : 
+        span= task.deadlineDate  
+  

@@ -20,7 +20,8 @@ function getAllTasks(req, res){
 
     Task.find()
     .then((result) => {
-        res.status(200).send(result)
+        res.status(200)
+        res.render('tasks', {title: "Tasks", tasks: result})
         console.log(result)
     })
     .catch((error) => console.log(error))

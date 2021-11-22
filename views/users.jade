@@ -1,5 +1,17 @@
 extends layout
 
 block content
-  p Users page
-  h1 nothing to see here...
+  h1 Users list
+  
+  each user in users
+    ul.card
+      li name : 
+        span= user.name
+      li email : 
+        span= user.email
+      li id : 
+        span= user.id
+      li password : 
+        span= user.password
+      
+  
