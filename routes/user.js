@@ -30,11 +30,16 @@ function getUserById(req, res){
 
   User.findOne(req.body.id).then((result) =>{
 
-    if(req.body.name == result.name && req.body.password == result.password){
-      res.status(200).send()
-    }else{
-      res.status(401).send()
-    }
+    console.log(result)
+
+    console.log(req.body.name + " " + result.name)
+    console.log(req.body.password + " " + result.password)
+
+    // if(req.body.name == result.name && req.body.password == result.password){
+    //   // res.status(200).send()
+    // }else{
+    //   // res.status(401).send()
+    // }
    
   })
   .catch((error) => console.log(error))
@@ -43,13 +48,13 @@ function getUserById(req, res){
 
 function deleteUser(req, res) {
 
-  User.findOneAndRemove(req.body.id)
-  .then(() =>{
-    res.status(200).send("Your Account is no longer exist")
+  User.findOneAndDelete(req.body.id)
+  .then((user) =>{
+    res.status(200)
+    console.log(user)
   })
-  .catch((error)=>{
-    console.log(error)
-  })
+  .catch((error) => console.log(error))
+ 
 }
 
 module.exports = {

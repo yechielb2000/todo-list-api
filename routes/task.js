@@ -28,10 +28,10 @@ function getAllTasks(req, res){
 
 function deleteTask(req, res){
 
-    Task.findOneAndRemove(req.body.id)
-    .then((result) => {
+    Task.findOneAndDelete(req.body.id)
+    .then((task) => {
         res.status(200)
-        console.log(result)
+        console.log(task)
     })
     .catch((error)=>{
         console.log(error)
