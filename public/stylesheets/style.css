@@ -22,8 +22,9 @@ ul{
 }
 
 .card{
+  width: 220px;
+  border-style: inset;
   margin-top: 10px;
   padding: 10px;
-  border: 2 solid beige;
 }
 

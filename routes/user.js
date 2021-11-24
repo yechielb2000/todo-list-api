@@ -1,18 +1,28 @@
-const User = require('../models/user')
+const mongoose = require('mongoose')
 
 function newUser(req, res){
-    new User({
-        name: req.query.name,
-        email: req.query.email,
-        password: req.query.password,
-        createdAt: new Date()
 
-        }).save()
-        .then((result) => {
-          console.log(result)
-          res.status(200).json({id: result._id})
-        })
-        .catch((error) => console.log(error))
+  if(!User.findById(req.query.name)){
+
+    const User = mongoose.model('User', mongoose.Schema({
+      name: String,
+      email: String,
+      password: String
+    }), "users")
+
+    new User({
+      name: req.query.name,
+      email: req.query.email,
+      password: req.query.password
+      }).save()
+      .then((result) => {
+        console.log(result)
+        res.status(200).json({id: result._id})
+      })
+      .catch((error) => console.log(error)) 
+  }else{
+    res.status(403).send({message: "This name is taken. Try another one"})
+  }
 }
 
 function getAllUsers(req, res){

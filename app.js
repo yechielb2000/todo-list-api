@@ -3,6 +3,7 @@ const express = require('express')
 const path = require('path')
 const cookieParser = require('cookie-parser')
 const logger = require('morgan')
+
 const Router = require('./routes/index')
 
 const app = express();
@@ -16,7 +17,10 @@ app.use(express.urlencoded({ extended: true }))
 app.use(cookieParser())
 app.use(express.static(path.join(__dirname, 'public')))
 
-app.use('/', Router)
+//started routes
+app.use('/', Router.router)
+app.use('/tasks', Router.tasksRouter)
+app.use('/users', Router.userRouter)
 
 app.use(function(req, res, next) {
   next(createError(404))
