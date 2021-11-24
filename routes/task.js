@@ -1,22 +1,32 @@
-const Task = require('../models/task')
+const mongoose = require('mongoose')
+
+const taskSchema = mongoose.Schema({
+    title: String,
+    text: String,
+    deadlineDate: Number
+  })
 
 function newTask(req, res){
-    
+
+    console.log(req.query)
+
+    let Task = mongoose.model("Task", taskSchema, req.query.collectionId) 
+  
     new Task({
-        title: req.body.title,
-        text: req.body.text,
-        picked_date: new Date(parseInt(+req.body.picked_date)),
-        createdAt: new Date()
-    
-        }).save()
-        .then((result) => {
-            console.log(result)
-            res.status(200)
-        })
-        .catch((error) => console.log(error))
+        title: req.query.title,
+        text: req.query.text,
+        deadlineDate: req.query.deadlineDate
+    }).save()
+    .then((result) => {
+        console.log(result)
+        res.status(200)
+    })
+    .catch((error) => console.log("error : " + error))
 }
 
 function getAllTasks(req, res){
+
+    let Task = mongoose.model("Task", taskSchema, req.query.collectionId) 
 
     Task.find()
     .then((result) => {

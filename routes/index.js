@@ -1,9 +1,11 @@
 const express = require('express')
 const packageJson = require('../package.json')
 const router = express.Router()
+const tasksRouter = express.Router()
+const userRouter = express.Router()
 const mongoose = require('mongoose')
 
-//routers
+//routes
 const user = require('./user')
 const task = require('./task')
 
@@ -16,18 +18,22 @@ router.get('/', function(req, res) {
   res.render('index', {title: 'Home'})
 })
 
-router.get('/users', user.getAllUsers)
+tasksRouter.get('/' , task.getAllTasks)
 
-router.get('/tasks', task.getAllTasks)
+userRouter.get('/', user.getAllUsers)
 
-router.get('/users/user', user.getUserById)
+userRouter.get('/user', user.getUserById)
 
-router.delete('/users/delete', user.deleteUser)
+userRouter.delete('/delete', user.deleteUser)
 
-router.delete('/tasks/delete', task.deleteTask)
+tasksRouter.delete('/delete', task.deleteTask)
 
-router.get('/users/new', user.newUser)
+userRouter.get('/new', user.newUser)
 
-router.post('/tasks/new', task.newTask)
-
-module.exports = router
+tasksRouter.get('/new', task.newTask)
+ 
+module.exports = {
+  router,
+  tasksRouter,
+  userRouter
+}
