@@ -28,3 +28,7 @@ ul{
   padding: 10px;
 }
 
+.big-title{
+  transform: scale(1, 1.5)
+}
+
