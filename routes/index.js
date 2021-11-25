@@ -13,23 +13,28 @@ mongoose.connect(packageJson.env.mongoLink)
 .then(()=> console.log('connected to database'))
 .catch((error)=> {console.log(error)})
 
-
 router.get('/', function(req, res) {
   res.render('index', {title: 'Home'})
 })
 
+//gets collectionId from query 
 tasksRouter.get('/' , task.getAllTasks)
 
+//gets nothing
 userRouter.get('/', user.getAllUsers)
 
+//gets userId from query 
 userRouter.get('/user', user.getUserById)
 
 userRouter.delete('/delete', user.deleteUser)
 
+//gets collectionId and id(task id) from query
 tasksRouter.delete('/delete', task.deleteTask)
 
+//gets name, email, password from query
 userRouter.get('/new', user.newUser)
 
+//gets title, text, deadlineDate and collectionId from query
 tasksRouter.get('/new', task.newTask)
  
 module.exports = {

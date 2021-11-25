@@ -5,10 +5,8 @@ block content
 
   if tasks.length > 1
     h4  there are #{tasks.length} tasks
-  else 
+  else if tasks.length > 0
     span there is one task
-
-  button hello 
 
   each task in tasks
     ul.card
