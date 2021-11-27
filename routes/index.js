@@ -9,7 +9,7 @@ const mongoose = require('mongoose')
 const user = require('./user')
 const task = require('./task')
 
-mongoose.connect(packageJson.env.mongoLink)
+const db = mongoose.connect(packageJson.env.mongoLink)
 .then(()=> console.log('connected to database'))
 .catch((error)=> {console.log(error)})
 
@@ -20,12 +20,13 @@ router.get('/', function(req, res) {
 //gets collectionId from query 
 tasksRouter.get('/' , task.getAllTasks)
 
-//gets nothing
+//gets nothing b(it's never used actually)
 userRouter.get('/', user.getAllUsers)
 
-//gets userId from query 
-userRouter.get('/user', user.getUserById)
+//gets id, name and password from query 
+userRouter.get('/user', user.loginUser)
 
+//gets id
 userRouter.delete('/delete', user.deleteUser)
 
 //gets collectionId and id(task id) from query
@@ -35,10 +36,13 @@ tasksRouter.delete('/delete', task.deleteTask)
 userRouter.get('/new', user.newUser)
 
 //gets title, text, deadlineDate and collectionId from query
-tasksRouter.get('/new', task.newTask)
+tasksRouter.post('/new', task.newTask)
  
 module.exports = {
   router,
   tasksRouter,
   userRouter
 }
+
+
+  

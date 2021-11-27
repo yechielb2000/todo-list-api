@@ -8,8 +8,6 @@ const taskSchema = mongoose.Schema({
 
 function newTask(req, res){
 
-    console.log(req.query)
-
     let Task = mongoose.model("Task", taskSchema, req.query.collectionId) 
   
     new Task({
@@ -27,6 +25,7 @@ function newTask(req, res){
 function getAllTasks(req, res){
 
     if(req.query.collectionId){
+        
         let Task = mongoose.model("Task", taskSchema, req.query.collectionId) 
 
         Task.find()
@@ -49,7 +48,7 @@ function deleteTask(req, res){
 
         Task.findOneAndDelete(req.body.id)
         .then((task) => {
-            res.status(200)
+            res.status(200).json({status:200, task: task, message: "task has been deleted successfully!"})
             console.log(task)
         })
         .catch((error)=>{
