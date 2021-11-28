@@ -52,6 +52,17 @@ function loginUser(req, res){
   .catch((error) => console.log(error))
 }
 
+function getUserById(req, res){
+
+  User.findById(req.query.id)
+  .then((result) =>{
+    res.status(200).send(result)
+    console.log(result)
+  })
+  .catch((error) => console.log(error))
+
+}
+
 function deleteUser(req, res) {
 
   User.findOneAndDelete(req.query.id)
@@ -67,5 +78,6 @@ module.exports = {
     newUser,
     getAllUsers,
     loginUser,
-    deleteUser
+    deleteUser,
+    getUserById
 }

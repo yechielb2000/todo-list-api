@@ -26,6 +26,9 @@ userRouter.get('/', user.getAllUsers)
 //gets name and password from query 
 userRouter.get('/user', user.loginUser)
 
+//gets id from query
+userRouter.get('/user-by-id', user.getUserById)
+
 //gets id
 userRouter.delete('/delete', user.deleteUser)
 
