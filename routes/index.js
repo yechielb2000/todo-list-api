@@ -23,7 +23,7 @@ tasksRouter.get('/' , task.getAllTasks)
 //gets nothing b(it's never used actually)
 userRouter.get('/', user.getAllUsers)
 
-//gets id, name and password from query 
+//gets name and password from query 
 userRouter.get('/user', user.loginUser)
 
 //gets id

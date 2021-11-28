@@ -17,7 +17,7 @@ function newTask(req, res){
     }).save()
     .then((result) => {
         console.log(result)
-        res.status(200)
+        res.status(200).send(null)
     })
     .catch((error) => console.log("error : " + error))
 }
@@ -30,14 +30,14 @@ function getAllTasks(req, res){
 
         Task.find()
         .then((result) => {
-            res.status(200)
+            res.status(200).send(result)
             res.render('tasks', {title: "Tasks", tasks: result})
             console.log(result)
         })
         .catch((error) => console.log(error))
     }else{
         res.render('404', {title: "404 page not found"})
-        res.status(404)
+        res.status(404).send(null)
     }
 }
 
@@ -48,7 +48,7 @@ function deleteTask(req, res){
 
         Task.findOneAndDelete(req.body.id)
         .then((task) => {
-            res.status(200).json({status:200, task: task, message: "task has been deleted successfully!"})
+            res.status(200).send({task: task, message: "task has been deleted successfully!"})
             console.log(task)
         })
         .catch((error)=>{
@@ -56,8 +56,8 @@ function deleteTask(req, res){
         })
     }else{
         res.render('404', {title: "404 page not found"})
-        res.status(404)
-    }
+        res.status(404).send({message: "task not found."})
+    }   
 }
 
 module.exports = {

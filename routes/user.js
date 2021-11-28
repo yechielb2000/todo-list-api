@@ -18,12 +18,12 @@ function newUser(req, res){
       }).save()
       .then((result) => {
         console.log(result)
-        res.status(200).json(result)
+        res.status(200).send(result)
       })
       .catch(() => {
         User.on('index', function(err) {
           if (err)
-            res.status(403).json({message: err})
+            res.status(403).send(null)
             console.log({message: err})
             return
           })}) 
@@ -33,7 +33,7 @@ function getAllUsers(req, res){
 
   User.find()
     .then((result) => {
-      res.status(200)
+      res.status(200).send(result)
       res.render('users', {title: "Users", users: result})
       console.log(result)
     })
@@ -42,12 +42,12 @@ function getAllUsers(req, res){
 
 function loginUser(req, res){
   
-  User.findById(req.query.id)
+  User.findOne({name: req.query.name})
   .then((result) =>{
-    if(req.query.name === result.name && req.query.password === result.password){
-      console.log({status: 200, response: result, message: "logged in"})  
-      res.status(200).json({status: 200, response: result, message: "logged in"});
-    }else res.status(401).json({status: 401, message: "incorrect details"})
+    if(req.query.password === result.password){
+      console.log({response: result, message: "logged in"})  
+      res.status(200).send(result);
+    }else res.status(401).send(null)
   })
   .catch((error) => console.log(error))
 }
@@ -56,7 +56,7 @@ function deleteUser(req, res) {
 
   User.findOneAndDelete(req.query.id)
   .then((user) =>{
-    res.status(200).json({status:200, user: user, message: "user has been deleted successfully!"});
+    res.status(200).send({user: user, message: "user has been deleted successfully!"});
     console.log(user)
   })
   .catch((error) => console.log(error))
