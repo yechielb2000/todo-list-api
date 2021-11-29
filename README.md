@@ -3,18 +3,16 @@ Node JS server for [todo list app](https://github.com/yechielb2000/TodoList)
 ## Instructions for using the server
 1. Make a new database in your MongoDB with a collection named `users` .
 2. Click on `connect` then `connect your application` , change the driver to `node js` and `version 4.0 or later` and copy the link they give you.
-3. In the server code go to `nodejs-server-todo-list/routes/index.js` and paste your link here  
-   
-     ```js
+3. In the server code go to `nodejs-server-todo-list/routes/index.js` and paste your link here    
+    
+    ```js
       const db = mongoose.connect(<PASTE-HERE-YOU-LINK>)
      .then(()=> console.log('connected to database'))
      .catch((error)=> {console.log(error)})
      ``` 
    Now on your terminal run `npm start` and you are good to go.
-   
 ## Schemas   
-
-#### User :
+### User :
 ```js
 mongoose.Schema({
   name: {
