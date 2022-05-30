@@ -6,7 +6,7 @@ Node JS server for [todo list app](https://github.com/yechielb2000/TodoList)
 3. In the server code go to `nodejs-server-todo-list/routes/index.js` and paste your link here    
     
     ```js
-      const db = mongoose.connect(<PASTE-HERE-YOU-LINK>)
+      const db = mongoose.connect(<PASTE-HERE-YOUR-LINK>)
      .then(()=> console.log('connected to database'))
      .catch((error)=> {console.log(error)})
      ``` 
