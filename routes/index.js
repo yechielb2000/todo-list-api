@@ -6,9 +6,9 @@ const userRouter = express.Router();
 const tasks = require("./tasks");
 const users = require("./users");
 
-// const db = mongoose.connect(/*enter link to access the mongoDB*/)
-// .then(()=> console.log('connected to database'))
-// .catch((error)=> {console.log(error)})
+const db = mongoose.connect(/*enter link to access the mongoDB*/)
+.then(()=> console.log('connected to database'))
+.catch((error)=> {console.log(error)})
 
 indexRouter.get("/", function (req, res) {
   res.render("index", { title: "To-Do-List-App" });
